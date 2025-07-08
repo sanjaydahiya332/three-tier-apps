@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: bookstore-backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: bookstore-backend
   template:
     metadata:
       labels:
-        app: backend
+        app: bookstore-backend
     spec:
       containers:
         - name: backend
-          image: sanjaydh/backend:v1  # Use your own image
+          image: sanjaydh/bookstore-backend:latest
           ports:
             - containerPort: 5000
           env:
@@ -23,4 +23,6 @@ spec:
             - name: DB_USER
               value: "postgres"
             - name: DB_PASS
-              value: "password"
+              value: "postgres"
+            - name: DB_NAME
+              value: "books"
