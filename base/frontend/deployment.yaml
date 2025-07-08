@@ -1,26 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: bookstore-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: bookstore-frontend
   template:
     metadata:
       labels:
-        app: frontend
+        app: bookstore-frontend
     spec:
       containers:
         - name: frontend
-          image: nginx:latest
+          image: sanjaydh/bookstore-frontend:latest
           ports:
-            - containerPort: 80
-          volumeMounts:
-            - name: html
-              mountPath: /usr/share/nginx/html
-      volumes:
-        - name: html
-          configMap:
-            name: frontend-html
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_API_URL
+              value: "http://backend:5000"
