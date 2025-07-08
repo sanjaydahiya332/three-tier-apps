@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: sanjaydh/backend:v1  # Use your own image
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DB_HOST
+              value: "db"
+            - name: DB_USER
+              value: "postgres"
+            - name: DB_PASS
+              value: "password"
