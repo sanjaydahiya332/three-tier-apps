@@ -4,7 +4,7 @@ metadata:
   name: backend
 spec:
   selector:
-    app: backend
+    app: bookstore-backend
   ports:
     - port: 5000
       targetPort: 5000
